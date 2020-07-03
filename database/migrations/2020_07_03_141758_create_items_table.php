@@ -19,7 +19,7 @@ class CreateItemsTable extends Migration
             $table->string('image');
             $table->string('title');
             $table->integer('user_id')->unsigned()->foreign('user_id')->references('id')->on('users');
-            $table->date('date');
+            $table->date('date')->nullable();
             $table->timestamps();
         });
     }
