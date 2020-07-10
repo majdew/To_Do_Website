@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Item;
+use App\User;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -26,9 +27,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
-        $user = auth()->user();
-        $item = request()->all();
+        return view("item.create");
 
     }
 
@@ -40,7 +39,12 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // function that creates item for specific user
+      
+        $user = auth()->user();
+        $item = new Item(request()->all());
+        $user->items()->save($item);
+        return redirect()->route('items.index');
     }
 
     /**
